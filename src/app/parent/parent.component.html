@@ -1,0 +1,8 @@
+<p>parent works!</p>
+<button (click)="changeName()">change name</button>
+{{data | json}}
+<div *ngFor="let item of data">
+    <app-child [item]="item"
+    ></app-child>
+</div>
+
