@@ -10,11 +10,9 @@ export class NotifyComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.check();
-    this.registerServiceWorker();
-    this.askPermission().then(()=>{
-      console.log('perm ');
-    })
+    // this.check();
+    // this.registerServiceWorker();
+    // this.askPermission()
   }
   check() {
     if (('serviceWorker' in navigator)) {
@@ -28,28 +26,32 @@ export class NotifyComponent implements OnInit {
     }
   }
   registerServiceWorker() {
-    return navigator.serviceWorker.register('/assets/service-worker.js')
-    .then(function(registration) {
-      const subscribeOptions = {
-        userVisibleOnly: true,
-        applicationServerKey:  'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U'
-        
-      };
-  
-      return registration.pushManager.subscribe(subscribeOptions);
-    })
-    .then(function(pushSubscription) {
-      console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-      return pushSubscription;
-    });
+
+
+
+        return navigator.serviceWorker.register('/assets/service-worker.js')
+          .then(function (registration) {
+            const subscribeOptions = {
+              userVisibleOnly: true,
+              applicationServerKey: 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U'
+
+            };
+
+            return registration.pushManager.subscribe(subscribeOptions);
+          })
+          .then(function (pushSubscription) {
+            console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+            return pushSubscription;
+          })
+
   }
 
    askPermission() {
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
       const permissionResult = Notification.requestPermission((result) => {
         resolve(result);
       });
-  
+
       if (permissionResult) {
         permissionResult.then(resolve, reject);
       }
