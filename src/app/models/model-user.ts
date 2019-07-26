@@ -1,13 +1,16 @@
+
 interface IUser {
     name: string;
     age: number;
-    toJson: () => IUser;
+    toJson: () => UserJson;
 }
-
+type UserJson = Pick<IUser, 'age' | 'name' >;
+type UserConstructor = Pick<IUser, Exclude<keyof IUser, 'toJson'>>;
 export class ModelUser implements IUser {
     private _name: string;
     private _age: number;
-    constructor({name = '', age = null}: Partial<IUser> = {}) {
+    constructor({name = '', age = null}:
+    Partial<UserConstructor> = {}) {
         this._name = name;
         this._age = age;
     }
@@ -23,10 +26,10 @@ export class ModelUser implements IUser {
     set age(a: number) {
          this._age = a;
     }
-    toJson(): Pick<IUser, Exclude<keyof IUser, 'toJson'>> {
+    toJson(): UserJson {
         return {
             name: this._name,
             age: this._age
-        }
+        };
     }
 }

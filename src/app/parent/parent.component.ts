@@ -49,8 +49,8 @@ export class ParentComponent implements OnInit {
 
   }
   run(): void {
-    const user = new ModelUser({ name: '0000000000', age: 66});
-    console.log(user);
+    const user = new ModelUser({age: 64, name: 'vfgdfg'});
+    console.log(user.toJson());
   }
 
 
