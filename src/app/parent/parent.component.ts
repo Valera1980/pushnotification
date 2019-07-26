@@ -1,3 +1,4 @@
+import { ModelUser } from './../models/model-user';
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,12 +19,11 @@ export class ParentComponent implements OnInit {
   ) { }
   ngOnInit() {
     this.data = this.getDataM();
-    
-  }
-  changeName(): void {
+
+  }  changeName(): void {
     const n = new Date().getTime().toString();
     const obj = {...{}, ...{name: 'g ' + name, age: 27}};
-    const newData = this._dataService.data.map((i:IData) => {
+    const newData = this._dataService.data.map((i: IData) => {
       return {...i, ...{ name: n, age: 99}};
     });
     console.log(newData);
@@ -36,7 +36,7 @@ export class ParentComponent implements OnInit {
   getDataM(): IData[] {
     return this._dataService.data;
   }
-  copyData(): IData[]{
+  copyData(): IData[] {
     const n = new Date().getTime().toString();
     const newArr = this.data.map(i => {
       return {name: n, age: 77} ;
@@ -47,6 +47,10 @@ export class ParentComponent implements OnInit {
     // });
 
 
+  }
+  run(): void {
+    const user = new ModelUser({ name: '0000000000', age: 66});
+    console.log(user);
   }
 
 

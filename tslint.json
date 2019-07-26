@@ -1,6 +1,7 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "adjacent-overload-signatures": false,
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
@@ -84,7 +85,12 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "variable-name": {
+      "options":[
+        "allow-leading-underscore"
+      ]
+    } 
   },
   "rulesDirectory": [
     "codelyzer"
