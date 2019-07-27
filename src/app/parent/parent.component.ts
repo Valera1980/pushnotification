@@ -1,11 +1,12 @@
-import { ModelUser } from './../models/model-user';
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
+import { ModelUser } from '../models/model-user';
 
 export interface IData {
   name: string;
   age: number;
 }
+type RoUser = Readonly<ModelUser>;
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
@@ -20,7 +21,8 @@ export class ParentComponent implements OnInit {
   ngOnInit() {
     this.data = this.getDataM();
 
-  }  changeName(): void {
+  }
+  changeName(): void {
     const n = new Date().getTime().toString();
     const obj = {...{}, ...{name: 'g ' + name, age: 27}};
     const newData = this._dataService.data.map((i: IData) => {
@@ -49,8 +51,13 @@ export class ParentComponent implements OnInit {
 
   }
   run(): void {
-    const user = new ModelUser({age: 64, name: 'vfgdfg'});
-    console.log(user.toJson());
+    const user = new ModelUser({name: '99999999', age: 22, email: 'gavrilow777@gmail.com'});
+    const user1 = user;
+    const userCopy = new ModelUser(user.toJson());
+    // console.log(user.toJson());
+    // console.log(userCopy.toJson());
+    console.log(user === user1);
+    console.log(user === userCopy);
   }
 
 
