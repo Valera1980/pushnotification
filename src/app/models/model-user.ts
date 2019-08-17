@@ -7,13 +7,14 @@ interface  IUser {
 }
 type UserJson = Pick<IUser, 'age' | 'name' | 'email' >;
 type UserConstructor = Pick<Partial<IUser>, Exclude<keyof IUser, 'toJson'>>;
-export class ModelUser extends ModelBase<UserJson> implements IUser {
+export class ModelUser extends ModelBase implements IUser {
     private _name: string;
     private _age: number;
     private _email: string;
 
     constructor({name = '', age = null, email = ''}:
     UserConstructor = {}
+    // UserConstructor = {}
     ) {
         super();
         this._name = name;

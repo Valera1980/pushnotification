@@ -1,6 +1,3 @@
-export abstract class ModelBase<R> {
-    // constructor(protected t: R) {
-
-    // }
-    abstract toJson(): R;
+export abstract class ModelBase {
+   abstract toJson(): any;
 }

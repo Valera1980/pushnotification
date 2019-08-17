@@ -1,3 +1,4 @@
+import { CopyModelsService } from './../services/deepcopy/copy.service';
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 import { ModelUser } from '../models/model-user';
@@ -16,7 +17,8 @@ export class ParentComponent implements OnInit {
 
   data: IData[] = [];
   constructor(
-    private _dataService: DataService
+    private _dataService: DataService,
+    private _copyModelServicevice: CopyModelsService
   ) { }
   ngOnInit() {
     this.data = this.getDataM();
@@ -51,13 +53,19 @@ export class ParentComponent implements OnInit {
 
   }
   run(): void {
-    const user = new ModelUser({name: '99999999', age: 22, email: 'gavrilow777@gmail.com'});
-    const user1 = user;
-    const userCopy = new ModelUser(user.toJson());
+    // const user = new ModelUser({name: '99999999', age: 22, email: 'gavrilow777@gmail.com'});
+    // const user = this._copyModelServicevice.build(ModelUser, {age: 55, name: 'trtr', email: '000'});
+    // const user1 = user;
+    // const userCopy = this._copyModelServicevice.copy(ModelUser, user);
     // console.log(user.toJson());
     // console.log(userCopy.toJson());
-    console.log(user === user1);
-    console.log(user === userCopy);
+    // // console.log(userCopy.toJson());
+    // console.log(user === user1);
+    // console.log(user === userCopy);
+    const a = {name: 'tttt', age: 33};
+    const { name, age, ...rest } = a;
+    console.log(rest);
+
   }
 
 
