@@ -8,20 +8,24 @@ export interface IData {
   age: number;
 }
 type RoUser = Readonly<ModelUser>;
+type Ext = Exclude<IData, 'age'>;
+interface IExt { age: number; }
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent implements OnInit {
-
-  data: IData[] = [];
   constructor(
     private _dataService: DataService,
     private _copyModelServicevice: CopyModelsService
   ) { }
+
+  data: IData[] = [];
+  title = 'News title ++++++++++++++++++++++++++++';
+  content = 'A description should be here!';
   ngOnInit() {
-    this.data = this.getDataM();
+    this.data = this.getDataM()
 
   }
   changeName(): void {
@@ -32,7 +36,7 @@ export class ParentComponent implements OnInit {
     });
     console.log(newData);
     // this._dataService.data = newData;
-    this.data = this.copyData();
+    this.data = this.copyData()
 
     // console.log(obj === this.data);
     // this.data = obj;
@@ -53,7 +57,8 @@ export class ParentComponent implements OnInit {
 
   }
   run(): void {
-    // const user = new ModelUser({name: '99999999', age: 22, email: 'gavrilow777@gmail.com'});
+    const user = new ModelUser({name: '99999999', age: 22, email: 'gavrilow777@gmail.com'});
+    user.name = 'hhhhhhhh';
     // const user = this._copyModelServicevice.build(ModelUser, {age: 55, name: 'trtr', email: '000'});
     // const user1 = user;
     // const userCopy = this._copyModelServicevice.copy(ModelUser, user);
@@ -62,11 +67,17 @@ export class ParentComponent implements OnInit {
     // // console.log(userCopy.toJson());
     // console.log(user === user1);
     // console.log(user === userCopy);
-    const a = {name: 'tttt', age: 33};
+    const immutUser = Object.freeze(user);
+    console.log(immutUser);
+    // immutUser.email = 'ooooo@jjj.ll';
+    const a = {name: 'tttt', age: 33} as const;
     const { name, age, ...rest } = a;
     console.log(rest);
+    // const t: IExt = { age: 777, uuu: ''};
 
   }
-
+  pps() {
+    console.log(`News title: ${this.title}, News content: ${this.content}`);
+  }
 
 }

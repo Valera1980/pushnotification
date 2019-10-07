@@ -1,5 +1,7 @@
 <p>parent component</p>
 <button (click)="run()">run</button>
+<app-news title="{{ title }}" content="{{ content }}"></app-news>
+<button (click)="pps()">print parent state</button>
 
 <!-- <button (click)="changeName()">change name</button>
 {{data | json}}
