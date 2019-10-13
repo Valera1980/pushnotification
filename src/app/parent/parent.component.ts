@@ -113,6 +113,10 @@ export class ParentComponent implements OnInit {
 
   }
   pps() {
+    const obj: Readonly<{name: string, age: number, info: any}> 
+    = this.freezeObj({ name: 'Valera', age: 39, info: { email: 'gavrilow777@gmail.com'}}) ;
+    // obj.info.email = 'uouu';
+    console.log(obj);
     const f = (all: number, current: number): number => {
       return all + current;
     };
@@ -122,7 +126,15 @@ export class ParentComponent implements OnInit {
     console.log(u);
 
   }
-
+  freezeObj<T>(obj: T): T {
+    for (const value of Object.values(obj)) {
+      Object.freeze(value);
+      if (typeof value === 'object') {
+        this.freezeObj(value);
+      }
+    }
+    return obj;
+  }
 
   frezeArr<T>(arr: T[]): T[] {
     arr.forEach(item => {
