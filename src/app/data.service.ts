@@ -7,16 +7,18 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   private _data: IData[] = [];
-  constructor() { }
+  constructor() { 
+    console.log('Service init');
+  }
   get data(): IData[] {
     console.log('getter');
-    const arr: IData[] = [
-      {name: '111', age: 11},
-      {name: '222', age: 22},
-      {name: '333', age: 33},
-    ]
-    .map((obj: IData) => Object.freeze(obj));
-    this._data = arr;
+    // const arr: IData[] = [
+    //   {name: '111', age: 11},
+    //   {name: '222', age: 22},
+    //   {name: '333', age: 33},
+    // ]
+    // .map((obj: IData) => Object.freeze(obj));
+    // this._data = arr;
     return this._data;
   }
   set data(d: IData[]) {

@@ -3,6 +3,42 @@ import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 import { ModelUser } from '../models/model-user';
 
+interface III {
+  a: string;
+  b: any;
+}
+// type roa = Readonly<III[]>;
+type Roa = ReadonlyArray<III>;
+
+interface ISaveOrderStrategy {
+  save(id: number): void;
+}
+
+class SaveTarget implements ISaveOrderStrategy {
+  save(id: number): void {
+    console.log(`Save order TARGET with id=${id}`);
+  }
+}
+class SaveService implements ISaveOrderStrategy {
+  save(id: number): void {
+    console.log(`Save order SERVICE with id=${id}`);
+  }
+}
+
+class OrderDealer {
+
+  private _strategy: ISaveOrderStrategy;
+  private _id: number;
+  constructor(id: number, str: ISaveOrderStrategy) {
+    this._strategy = str;
+    this._id = id;
+  }
+
+  save(): void {
+    this._strategy.save(this._id);
+  }
+}
+
 export interface IData {
   name: string;
   age: number;
@@ -25,18 +61,18 @@ export class ParentComponent implements OnInit {
   title = 'News title ++++++++++++++++++++++++++++';
   content = 'A description should be here!';
   ngOnInit() {
-    this.data = this.getDataM()
+    this.data = this.getDataM();
 
   }
   changeName(): void {
     const n = new Date().getTime().toString();
-    const obj = {...{}, ...{name: 'g ' + name, age: 27}};
+    const obj = { ...{}, ...{ name: 'g ' + name, age: 27 } };
     const newData = this._dataService.data.map((i: IData) => {
-      return {...i, ...{ name: n, age: 99}};
+      return { ...i, ...{ name: n, age: 99 } };
     });
     console.log(newData);
     // this._dataService.data = newData;
-    this.data = this.copyData()
+    this.data = this.copyData();
 
     // console.log(obj === this.data);
     // this.data = obj;
@@ -47,7 +83,7 @@ export class ParentComponent implements OnInit {
   copyData(): IData[] {
     const n = new Date().getTime().toString();
     const newArr = this.data.map(i => {
-      return {name: n, age: 77} ;
+      return { name: n, age: 77 };
     });
     return newArr;
     // newArr.forEach(i => {
@@ -57,7 +93,7 @@ export class ParentComponent implements OnInit {
 
   }
   run(): void {
-    const user = new ModelUser({name: '99999999', age: 22, email: 'gavrilow777@gmail.com'});
+    const user = new ModelUser({ name: '99999999', age: 22, email: 'gavrilow777@gmail.com' });
     user.name = 'hhhhhhhh';
     // const user = this._copyModelServicevice.build(ModelUser, {age: 55, name: 'trtr', email: '000'});
     // const user1 = user;
@@ -70,14 +106,38 @@ export class ParentComponent implements OnInit {
     const immutUser = Object.freeze(user);
     console.log(immutUser);
     // immutUser.email = 'ooooo@jjj.ll';
-    const a = {name: 'tttt', age: 33} as const;
+    const a = { name: 'tttt', age: 33 } as const;
     const { name, age, ...rest } = a;
     console.log(rest);
     // const t: IExt = { age: 777, uuu: ''};
 
   }
   pps() {
-    console.log(`News title: ${this.title}, News content: ${this.content}`);
+    const arr: ReadonlyArray<III> = [{ a: 'aaa', b: 111 }, { a: 'aaa', b: 333 }, { a: 'bbb', b: { sss: 999 } }];
+    arr[2].b.sss = '00000000';
+    console.log(arr);
+    const ttt = arr.filter(t => t.a === 'aaa').map(t => Object.assign({}, { a: t.a, b: t.b }));
+    console.log(ttt.sort((a, b) => b.b - a.b));
+    // const saveOrder = new OrderDealer(34, new SaveTarget());
+    // saveOrder.save();
+    // console.log(`News title: ${this.title}, News content: ${this.content}`);
+  }
+
+
+  frezeArr<T>(arr: T[]): T[] {
+    arr.forEach(item => {
+      Object.freeze(item);
+      const values = Object.values(item);
+      for (const v of values) {
+        if (typeof v === 'object') {
+          this.frezeArr([v]);
+        }
+      }
+    });
+    return arr;
   }
 
 }
+
+
+

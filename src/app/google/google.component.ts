@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { IData } from './../parent/parent.component';
+import { DataService } from './../data.service';
+import { Component, OnInit, SkipSelf } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 // declare const gapi;
@@ -6,13 +8,26 @@ declare var gapi: any;
 @Component({
   selector: 'app-google',
   templateUrl: './google.component.html',
-  styleUrls: ['./google.component.scss']
+  styleUrls: ['./google.component.scss'],
+  providers:[ DataService]
 })
 export class GoogleComponent implements OnInit {
 
   loadGapi$ = new BehaviorSubject<boolean>(false);
   key = '315356854331-2l4d037tic0m4tt0jfcl0cuo8eoljonp.apps.googleusercontent.com';
-  constructor() { }
+  constructor(
+    private _dataService: DataService,
+    @SkipSelf() private _dddd: DataService
+  ) { 
+    console.log(this._dddd.data);
+    _dataService.data = [{name:'sss', age: 22}];
+    _dddd.data = [{name:'lkjlkjkj', age: 999999}];
+
+    console.log('ddddd ',this._dddd.data);
+    console.log('ssssss ',this._dataService.data);
+
+
+  }
 
   ngOnInit() {
      const me = this;
