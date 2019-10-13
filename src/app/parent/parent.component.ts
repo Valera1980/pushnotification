@@ -113,14 +113,14 @@ export class ParentComponent implements OnInit {
 
   }
   pps() {
+    const f = (all: number, current: number): number => {
+      return all + current;
+    };
     const arr: ReadonlyArray<III> = [{ a: 'aaa', b: 111 }, { a: 'aaa', b: 333 }, { a: 'bbb', b: { sss: 999 } }];
-    arr[2].b.sss = '00000000';
-    console.log(arr);
-    const ttt = arr.filter(t => t.a === 'aaa').map(t => Object.assign({}, { a: t.a, b: t.b }));
-    console.log(ttt.sort((a, b) => b.b - a.b));
-    // const saveOrder = new OrderDealer(34, new SaveTarget());
-    // saveOrder.save();
-    // console.log(`News title: ${this.title}, News content: ${this.content}`);
+    const a = [1, 2, 3, 4, 5];
+    const u = a.reduce((acc: number, i: number) => f(acc, i), 0);
+    console.log(u);
+
   }
 
 
