@@ -60,9 +60,13 @@ export class ParentComponent implements OnInit {
   data: IData[] = [];
   title = 'News title ++++++++++++++++++++++++++++';
   content = 'A description should be here!';
+  user = Object.freeze(new ModelUser({name: 'Valera', age: 39, email: 'gavrilow777@gmail.com'}));
   ngOnInit() {
     this.data = this.getDataM();
 
+  }
+  changeNameChild() {
+    this.user = new ModelUser({...this.user.toJson(), ...{name: '0000000000'}});
   }
   changeName(): void {
     const n = new Date().getTime().toString();
@@ -113,7 +117,7 @@ export class ParentComponent implements OnInit {
 
   }
   pps() {
-    const obj: Readonly<{name: string, age: number, info: any}> 
+    const obj: Readonly<{name: string, age: number, info: any}>
     = this.freezeObj({ name: 'Valera', age: 39, info: { email: 'gavrilow777@gmail.com'}}) ;
     // obj.info.email = 'uouu';
     console.log(obj);

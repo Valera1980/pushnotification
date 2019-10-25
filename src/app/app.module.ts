@@ -7,6 +7,11 @@ import { ChildComponent } from './child/child.component';
 import { NotifyComponent } from './notify/notify.component';
 import { NewsComponent } from './news/news.component';
 import { GoogleComponent } from './google/google.component';
+import { LifeCilesComponent } from './life-ciles/life-ciles.component';
+import {CheckboxModule} from 'primeng/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -15,10 +20,13 @@ import { GoogleComponent } from './google/google.component';
     ChildComponent,
     NotifyComponent,
     NewsComponent,
-    GoogleComponent
+    GoogleComponent,
+    LifeCilesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CheckboxModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

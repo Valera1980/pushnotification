@@ -1,0 +1,16 @@
+<h3 class="first">Basic</h3>
+<div [formGroup]="form">
+
+    <div class="ui-g" style="width:250px;margin-bottom:10px"  formArrayName="items" 
+    *ngFor="let item of form.get('items').controls; let i = index;">
+    <div [formGroupName]="i">
+        <div class="ui-g-12"><p-checkbox  formControlName="a"  binary="true" label="New York"  ></p-checkbox></div>
+        <div class="ui-g-12"><p-checkbox  formControlName="b"  binary="true" label="San Francisco" ></p-checkbox></div>
+        <div class="ui-g-12"><p-checkbox  formControlName="c"  binary="true" label="Los Angeles"  ></p-checkbox></div>
+    </div>
+       
+    </div>
+
+</div><button (click)="types()">types</button>
+
+
