@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ModelUser } from './../models/model-user';
+import { ModelUser, UserSerialize } from './../models/model-user';
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../user.service';
 import { CopyModelsService } from '../services/deepcopy/copy.service';
@@ -61,7 +61,7 @@ export class UserpageComponent implements OnInit {
     });
   }
   private _copyArray(): ModelUser[] {
-    return this._copyService.copyArray<ModelUser>(this.users);
+    return this._copyService.copyArray<ModelUser, UserSerialize>(this.users);
   }
 
 }

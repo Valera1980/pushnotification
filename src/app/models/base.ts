@@ -1,6 +1,6 @@
-export abstract class ModelBase<T> {
+export abstract class ModelBase<T, S> {
    abstract id: number;
    abstract isNew: boolean;
-   abstract toJson(): any;
+   abstract toJson(): S;
    abstract clone(): T;
 }

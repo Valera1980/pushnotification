@@ -7,9 +7,9 @@ export interface  IUser {
     age: number;
     email: string;
 }
-type UserJson = Pick<IUser, 'age' | 'name' | 'email' | 'id' | 'isNew' >;
-type UserConstructor = Pick<Partial<IUser>, Exclude<keyof IUser, 'toJson'>>;
-export class ModelUser extends ModelBase<ModelUser> implements IUser {
+export type UserSerialize = Pick<IUser, 'age' | 'name' | 'email' | 'id' | 'isNew' >;
+export type UserConstructor = Pick<Partial<IUser>, Exclude<keyof IUser, 'toJson'>>;
+export class ModelUser extends ModelBase<ModelUser, UserSerialize> implements IUser {
     private _isNew: boolean;
     private _id: number;
     private _name: string;
@@ -18,7 +18,6 @@ export class ModelUser extends ModelBase<ModelUser> implements IUser {
 
     constructor({id, isNew = false, name = '', age = null, email = ''}:
     UserConstructor = {}
-    // UserConstructor = {}
     ) {
         super();
         this._id = id;
@@ -27,7 +26,7 @@ export class ModelUser extends ModelBase<ModelUser> implements IUser {
         this._age = age;
         this._email = email;
     }
-    get id() : number {
+    get id(): number {
         return this._id;
     }
     get name(): string {
@@ -57,7 +56,7 @@ export class ModelUser extends ModelBase<ModelUser> implements IUser {
     set email(email: string) {
         this._email = email;
     }
-    toJson(): UserJson {
+    toJson(): UserSerialize {
         return {
             id: this._id,
             isNew: this._isNew,
