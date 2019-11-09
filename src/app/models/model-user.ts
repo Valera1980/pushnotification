@@ -1,27 +1,35 @@
 import { ModelBase } from './base';
 
-interface  IUser {
+export interface  IUser {
+    id: number;
+    isNew: boolean;
     name: string;
     age: number;
     email: string;
 }
-type UserJson = Pick<IUser, 'age' | 'name' | 'email' >;
+type UserJson = Pick<IUser, 'age' | 'name' | 'email' | 'id' | 'isNew' >;
 type UserConstructor = Pick<Partial<IUser>, Exclude<keyof IUser, 'toJson'>>;
-export class ModelUser extends ModelBase implements IUser {
+export class ModelUser extends ModelBase<ModelUser> implements IUser {
+    private _isNew: boolean;
+    private _id: number;
     private _name: string;
     private _age: number;
     private _email: string;
 
-    constructor({name = '', age = null, email = ''}:
+    constructor({id, isNew = false, name = '', age = null, email = ''}:
     UserConstructor = {}
     // UserConstructor = {}
     ) {
         super();
+        this._id = id;
+        this._isNew = isNew,
         this._name = name;
         this._age = age;
         this._email = email;
     }
-
+    get id() : number {
+        return this._id;
+    }
     get name(): string {
         return this._name;
     }
@@ -30,6 +38,15 @@ export class ModelUser extends ModelBase implements IUser {
     }
     get email(): string {
         return this._email;
+    }
+    get isNew(): boolean {
+        return this._isNew;
+    }
+    set id(id: number) {
+        this._id = id;
+    }
+    set isNew(isn: boolean) {
+        this._isNew = isn;
     }
     set name(name: string) {
          this._name = name;
@@ -42,9 +59,15 @@ export class ModelUser extends ModelBase implements IUser {
     }
     toJson(): UserJson {
         return {
+            id: this._id,
+            isNew: this._isNew,
             email: this._email,
             name: this._name,
             age: this._age
         };
     }
+    clone(): ModelUser {
+      return new ModelUser(this.toJson());
+    }
+
 }

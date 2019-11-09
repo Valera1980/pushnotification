@@ -1,0 +1,21 @@
+<p>userpage works!</p>
+<button (click)="add()">add</button>
+<button (click)="save()">save</button>
+<div *ngFor="let user of users">
+    <ul (click)="editUser(user.id)" [class.selected-item]="user.id == selectedId">
+        <li>
+            <p>id: {{user.id}}</p>
+        </li>
+        <li>
+            <p>name: {{user.name}}</p>
+        </li>
+        <li>
+            <p>email: {{user.email}}</p>
+        </li>
+        <li>
+            <p>age: {{user.age}}</p>
+        </li>
+        <p>=======================================</p>
+    </ul>
+
+</div>

@@ -10,6 +10,9 @@ import { GoogleComponent } from './google/google.component';
 import { LifeCilesComponent } from './life-ciles/life-ciles.component';
 import {CheckboxModule} from 'primeng/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserpageComponent } from './userpage/userpage.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -21,12 +24,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotifyComponent,
     NewsComponent,
     GoogleComponent,
-    LifeCilesComponent
+    LifeCilesComponent,
+    UserpageComponent
   ],
   imports: [
     BrowserModule,
     CheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   private _data: IData[] = [];
-  constructor() { 
+  constructor() {
     console.log('Service init');
   }
   get data(): IData[] {
