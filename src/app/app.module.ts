@@ -12,6 +12,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserpageComponent } from './userpage/userpage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TypcecheckComponent } from './typcecheck/typcecheck.component';
 
 
 
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     NewsComponent,
     GoogleComponent,
     LifeCilesComponent,
-    UserpageComponent
+    UserpageComponent,
+    TypcecheckComponent
   ],
   imports: [
     BrowserModule,

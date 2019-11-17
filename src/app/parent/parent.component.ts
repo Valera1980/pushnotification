@@ -46,6 +46,9 @@ export interface IData {
 type RoUser = Readonly<ModelUser>;
 type Ext = Exclude<IData, 'age'>;
 interface IExt { age: number; }
+function isUser(user: any): user is ModelUser {
+  return (user as ModelUser).name !== undefined;
+}
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
@@ -99,6 +102,7 @@ export class ParentComponent implements OnInit {
   run(): void {
     const user = new ModelUser({ name: '99999999', age: 22, email: 'gavrilow777@gmail.com' });
     user.name = 'hhhhhhhh';
+  
     // const user = this._copyModelServicevice.build(ModelUser, {age: 55, name: 'trtr', email: '000'});
     // const user1 = user;
     // const userCopy = this._copyModelServicevice.copy(ModelUser, user);
