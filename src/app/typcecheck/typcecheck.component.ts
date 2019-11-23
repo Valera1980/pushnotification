@@ -1,5 +1,10 @@
+import { ModelUser } from './../models/model-user';
 import { Component, OnInit } from '@angular/core';
 import { PersonOrAnimal, Person, Animal, isAnimal, isPerson } from './types';
+interface PageInfo {
+  title: string;
+}
+type Page = 'home' | 'about' | 'contacts';
 
 @Component({
   selector: 'app-typcecheck',
@@ -19,8 +24,21 @@ export class TypcecheckComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const x: Record<Page, PageInfo> = {
+      about: { title: '000' },
+      contacts: { title: '000' },
+      home: { title: '000' }
+    };
+    const sss: string = this.someFun(0);
+    const iii = sss.trim();
   }
 
+  someFun(p: number): string {
+    if (p === 0) {
+      return '';
+    }
+    return 'oooo';
+  }
   printSome(): void {
     this.print(this.itemA);
   }

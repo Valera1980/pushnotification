@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormattedMessageChain } from '@angular/compiler';
 
 interface Bird {
   name: string;
@@ -48,7 +49,7 @@ export class LifeCilesComponent implements OnInit {
   }
   fff(form: FormGroup) {
     if (form.dirty) {
-      console.table(form.get('items').value);
+      console.table(form.get('items')!.value);
 
     }
   }
@@ -79,6 +80,9 @@ export class LifeCilesComponent implements OnInit {
     } else {
       console.log(animal.name);
     }
+  }
+  get items() {
+    return this.form.get('items') as FormArray;
   }
 }
 

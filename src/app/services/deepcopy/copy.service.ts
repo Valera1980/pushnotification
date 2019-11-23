@@ -25,15 +25,17 @@ export class CopyModelsService {
      return true;
   }
   compareArr<T extends ModelBase<T, S>, S>(arr1: T[] | ReadonlyArray<T>, arr2: T[] | ReadonlyArray<T>): boolean {
+    let condition = true;
     for (const item1 of arr1) {
       const itemForcompare = arr2.find(item => item.id == item1.id);
       if (!itemForcompare) {
         continue;
       }
       if (!this.isEqual<T, S>(item1, itemForcompare)) {
-         return false;
+         condition = false;
       }
     }
+    return condition;
   }
   getDifference<T extends ModelBase<T, S>, S>(etalonArr: T[] | ReadonlyArray<T>, arr2: T[] | ReadonlyArray<T>): T[] {
     const diffArr = [] as T[];
