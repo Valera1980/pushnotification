@@ -1,13 +1,13 @@
-version: '2.1'
+# version: '2.1'
 
-services:
-  immuttest:
-    image: immuttest
-    build: .
-    environment:
-      NODE_ENV: development
-    ports:
-      - 3000:3000
-      - 9229:9229
-    ## set your startup file here
-    command: node --inspect=0.0.0.0:9229 index.js
+# services:
+#   immuttest:
+#     image: immuttest
+#     build: .
+#     environment:
+#       NODE_ENV: development
+#     ports:
+#       - 3000:3000
+#       - 9229:9229
+#     ## set your startup file here
+#     command: node --inspect=0.0.0.0:9229 index.js

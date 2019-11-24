@@ -50,5 +50,8 @@ export class TypcecheckComponent implements OnInit {
       console.log(perOrAn.age);
     }
   }
+  alertMsg(): void {
+  alert('HHHHH');
+  }
 
 }
