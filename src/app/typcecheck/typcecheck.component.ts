@@ -37,7 +37,7 @@ export class TypcecheckComponent implements OnInit {
     if (p === 0) {
       return '';
     }
-    return 'oooo';
+    return '    oooo      ';
   }
   printSome(): void {
     this.print(this.itemA);
