@@ -1,5 +1,6 @@
+import { InjTestService } from './../inj-test.service';
 import { ModelUser } from './../models/model-user';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self, SkipSelf, Optional, Host } from '@angular/core';
 import { PersonOrAnimal, Person, Animal, isAnimal, isPerson } from './types';
 interface PageInfo {
   title: string;
@@ -9,7 +10,10 @@ type Page = 'home' | 'about' | 'contacts';
 @Component({
   selector: 'app-typcecheck',
   templateUrl: './typcecheck.component.html',
-  styleUrls: ['./typcecheck.component.scss']
+  styleUrls: ['./typcecheck.component.scss'],
+  providers:[
+    InjTestService
+  ]
 })
 export class TypcecheckComponent implements OnInit {
   item: Readonly<Person> = {
@@ -21,7 +25,10 @@ export class TypcecheckComponent implements OnInit {
     type: 'cat'
   };
 
-  constructor() { }
+  constructor(
+    private _injSelf: InjTestService,
+    @SkipSelf() private _injSkipSelf: InjTestService,
+  ) { }
 
   ngOnInit() {
     const x: Record<Page, PageInfo> = {

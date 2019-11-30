@@ -2,8 +2,8 @@ version: '2.1'
 
 services:
   app:
-      image: tttttttttt:v1
+      image: tttttttttt:v4
       build: '.'
       ports: 
-          - 7777:80 
+          - 9999:80 
  
