@@ -2,6 +2,8 @@ import { InjTestService } from './../inj-test.service';
 import { ModelUser } from './../models/model-user';
 import { Component, OnInit, Self, SkipSelf, Optional, Host } from '@angular/core';
 import { PersonOrAnimal, Person, Animal, isAnimal, isPerson } from './types';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { pluck, share, shareReplay } from 'rxjs/operators';
 interface PageInfo {
   title: string;
 }
@@ -11,7 +13,7 @@ type Page = 'home' | 'about' | 'contacts';
   selector: 'app-typcecheck',
   templateUrl: './typcecheck.component.html',
   styleUrls: ['./typcecheck.component.scss'],
-  providers:[
+  providers: [
     InjTestService
   ]
 })
@@ -31,13 +33,29 @@ export class TypcecheckComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const x: Record<Page, PageInfo> = {
-      about: { title: '000' },
-      contacts: { title: '000' },
-      home: { title: '000' }
-    };
-    const sss: string = this.someFun(0);
-    const iii = sss.trim();
+    // simulate url change with subject
+    const routeEnd = new Subject<{ data: any, url: string }>();
+
+    // grab url and share with subscribers
+    const lastUrl = routeEnd.pipe(
+      pluck('url'),
+      shareReplay(1)
+    );
+
+    // initial subscriber required
+    const initialSubscriber = lastUrl.subscribe((d) => {
+      console.log('+++++++++++++++++++++++++++++++++++++++');
+      console.log(d);
+    });
+
+    // simulate route change
+    routeEnd.next({ data: {}, url: 'my-path5' });
+
+    // nothing logged
+    const lateSubscriber = lastUrl.subscribe((d) => {
+      console.log('0000000000000000000000000000000000000000000000');
+      console.log(d);
+    });
   }
 
   someFun(p: number): string {
@@ -58,7 +76,7 @@ export class TypcecheckComponent implements OnInit {
     }
   }
   alertMsg(): void {
-  alert('HHHHH');
+    alert('HHHHH');
   }
 
 }
