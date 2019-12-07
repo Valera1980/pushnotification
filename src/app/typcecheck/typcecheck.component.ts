@@ -2,7 +2,7 @@ import { InjTestService } from './../inj-test.service';
 import { ModelUser } from './../models/model-user';
 import { Component, OnInit, Self, SkipSelf, Optional, Host } from '@angular/core';
 import { PersonOrAnimal, Person, Animal, isAnimal, isPerson } from './types';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, ReplaySubject, AsyncSubject } from 'rxjs';
 import { pluck, share, shareReplay } from 'rxjs/operators';
 interface PageInfo {
   title: string;
@@ -27,11 +27,40 @@ export class TypcecheckComponent implements OnInit {
     type: 'cat'
   };
 
+  behaviorOne$ = new BehaviorSubject<number>(0);
+  replayOne$ = new AsyncSubject<number>();
+  iteratorsub = 0;
+  iteratorrepl = 0;
   constructor(
     private _injSelf: InjTestService,
     @SkipSelf() private _injSkipSelf: InjTestService,
-  ) { }
+  ) {
+    // this.next();
+  }
 
+  next() {
+    // this.behaviorOne$.next(this.iteratorsub++);
+    this.replayOne$.next(++this.iteratorrepl);
+  }
+  subscribe1() {
+    this.replayOne$
+      .subscribe(d => {
+        console.log('replay1: ', d);
+      });
+  }
+  subscribe2() {
+    this.replayOne$
+      .subscribe(d => {
+        console.log('replay2: ', d);
+      });
+  }
+  subscribe3() {
+    this.replayOne$
+      .subscribe(d => {
+        console.log('replay3: ', d);
+      });
+    this.replayOne$.complete();
+  }
   ngOnInit() {
     // simulate url change with subject
     const routeEnd = new Subject<{ data: any, url: string }>();
@@ -44,8 +73,8 @@ export class TypcecheckComponent implements OnInit {
 
     // initial subscriber required
     const initialSubscriber = lastUrl.subscribe((d) => {
-      console.log('+++++++++++++++++++++++++++++++++++++++');
-      console.log(d);
+      // console.log('+++++++++++++++++++++++++++++++++++++++');
+      // console.log(d);
     });
 
     // simulate route change
@@ -53,8 +82,8 @@ export class TypcecheckComponent implements OnInit {
 
     // nothing logged
     const lateSubscriber = lastUrl.subscribe((d) => {
-      console.log('0000000000000000000000000000000000000000000000');
-      console.log(d);
+      // console.log('0000000000000000000000000000000000000000000000');
+      // console.log(d);
     });
   }
 
