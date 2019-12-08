@@ -9,6 +9,8 @@ interface PageInfo {
 }
 type Page = 'home' | 'about' | 'contacts';
 
+type some_type<T> = T extends string ? string : number;
+
 @Component({
   selector: 'app-typcecheck',
   templateUrl: './typcecheck.component.html',
@@ -37,6 +39,8 @@ export class TypcecheckComponent implements OnInit {
   ) {
     // this.next();
   }
+
+ 
 
   next() {
     // this.behaviorOne$.next(this.iteratorsub++);
@@ -85,6 +89,9 @@ export class TypcecheckComponent implements OnInit {
       // console.log('0000000000000000000000000000000000000000000000');
       // console.log(d);
     });
+
+    const s: some_type<string> = '9';
+    console.log(typeof s);
   }
 
   someFun(p: number): string {
