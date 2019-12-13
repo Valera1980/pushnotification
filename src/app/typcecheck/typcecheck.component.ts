@@ -10,6 +10,8 @@ interface PageInfo {
 type Page = 'home' | 'about' | 'contacts';
 
 type some_type<T> = T extends string ? string : number;
+type FFF<T> = T extends { aaa: infer U, bbb: infer U } ? U : never;
+type sn = FFF<{aaa: string, bbb: number}>;
 
 @Component({
   selector: 'app-typcecheck',
@@ -40,11 +42,13 @@ export class TypcecheckComponent implements OnInit {
     // this.next();
   }
 
- 
 
   next() {
+
+    
     // this.behaviorOne$.next(this.iteratorsub++);
-    this.replayOne$.next(++this.iteratorrepl);
+    // this.replayOne$.next(++this.iteratorrepl);
+
   }
   subscribe1() {
     this.replayOne$
