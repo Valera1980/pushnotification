@@ -11,7 +11,17 @@ type Page = 'home' | 'about' | 'contacts';
 
 type some_type<T> = T extends string ? string : number;
 type FFF<T> = T extends { aaa: infer U, bbb: infer U } ? U : never;
-type sn = FFF<{aaa: string, bbb: number}>;
+type sn = FFF<{ aaa: string, bbb: number }>;
+
+interface III {
+  ayyyyy: number;
+  byyyyyy: number;
+  cmmmm: number;
+}
+
+type ggg = Omit<III, 'ayyyyy'>;
+
+const u: ggg = { byyyyyy: 9, cmmmm: 7}
 
 @Component({
   selector: 'app-typcecheck',
@@ -45,7 +55,7 @@ export class TypcecheckComponent implements OnInit {
 
   next() {
 
-    
+
     // this.behaviorOne$.next(this.iteratorsub++);
     // this.replayOne$.next(++this.iteratorrepl);
 

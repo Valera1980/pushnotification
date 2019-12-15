@@ -22,7 +22,7 @@
     "primeng": "^9.0.0-rc.2",
     "rxjs": "~6.5.3",
     "tslib": "^1.9.0",
-    "typescript": "3.5.3",
+    "typescript": "^3.5.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
