@@ -15,7 +15,7 @@ export class UserpageComponent implements OnInit {
 
   users$: Observable<ModelUser[]>;
   selectedId: number;
-  users: ReadonlyArray<ModelUser> = [];
+  users: ReadonlyArray<Readonly<ModelUser>> = [];
   constructor(
     private _usersService: UserService,
     private _cd: ChangeDetectorRef,
@@ -60,8 +60,11 @@ export class UserpageComponent implements OnInit {
       console.log(u);
     });
   }
-  private _copyArray(): ModelUser[] {
-    return this._copyService.copyArray<ModelUser, UserSerialize>(this.users);
+  private _copyArray(): Readonly<ModelUser[]> {
+    const arr = this.users.map(u => u.clone());
+    return arr;
+  //   return this._copyService
+  //   .copyArray<Readonly<ModelUser>, UserSerialize>(this.users);
   }
 
 }

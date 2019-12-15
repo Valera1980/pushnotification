@@ -29,7 +29,7 @@ export class UserService {
         })
       );
   }
-  save(users: ReadonlyArray<ModelUser>): Observable<any> {
+  save(users: ReadonlyArray<Readonly<ModelUser>>): Observable<any> {
     return this._users$
       .pipe(
         filter((u: ReadUserOrNull) => Array.isArray(u)),

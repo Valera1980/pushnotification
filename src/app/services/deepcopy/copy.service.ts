@@ -10,8 +10,9 @@ export class CopyModelsService {
   copy<T extends ModelBase<T, S>, S>(type: new(p: any) => T, model: T): T {
      return model.clone();
   }
-  copyArray<T extends ModelBase<T, S>, S>(arr: T[] | ReadonlyArray<T>): T[] {
-      return arr.map(item =>  item.clone());
+  copyArray<T extends ModelBase<T, S>, S>(arr: Readonly<T>[]): T[] {
+      // return arr.map(item =>  item.clone());
+      return [];
   }
   build<T extends ModelBase<T, S>, P extends Partial<T>, S>(type: new(p: P) => T, params: P): T {
     return new type(params);
