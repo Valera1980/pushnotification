@@ -1,3 +1,4 @@
+import {FormsModule} from '@angular/forms/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserpageComponent } from './userpage/userpage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypcecheckComponent } from './typcecheck/typcecheck.component';
+import { TestformComponent } from './testform/testform.component';
 
 
 
@@ -27,7 +29,8 @@ import { TypcecheckComponent } from './typcecheck/typcecheck.component';
     GoogleComponent,
     LifeCilesComponent,
     UserpageComponent,
-    TypcecheckComponent
+    TypcecheckComponent,
+    TestformComponent,
   ],
   imports: [
     BrowserModule,

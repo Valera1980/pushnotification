@@ -1,0 +1,11 @@
+.form-main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: auto;
+    background: aquamarine;
+    &__control {
+        margin: 3px;
+    }
+}

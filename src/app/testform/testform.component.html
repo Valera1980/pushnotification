@@ -1,0 +1,6 @@
+<div class="form-main" [formGroup]="m_form">
+        <input class="form-main__control" formControlName="one">
+        <input class="form-main__control" formControlName="two">
+        <input class="form-main__control" formControlName="three">
+</div>
+{{m_form.value | json}}
