@@ -75,21 +75,21 @@ export class TestformComponent implements OnInit {
     return false;
   }
 
-  private _findReccursion(id: number, arr: any): any {
+  private _findRecursion(id: number, arr: any): any {
     let ttt = null;
     for (const t of arr) {
       if (t.attrs.id == id) {
         ttt = t;
         return t;
       } else {
-        ttt = this._findReccursion(id, t.attrs.sections );
+        ttt = this._findRecursion(id, t.attrs.sections );
       }
     }
     return  ttt;
   }
 
   testRecc() {
-    const a = this._findReccursion(7777, this.arr);
+    const a = this._findRecursion(7777, this.arr);
     console.log(a);
   }
 
