@@ -6,7 +6,8 @@
     "start": "ng serve",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/immutTest/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
