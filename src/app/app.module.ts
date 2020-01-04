@@ -15,6 +15,7 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypcecheckComponent } from './typcecheck/typcecheck.component';
 import { TestformComponent } from './testform/testform.component';
+import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
 
 
 
@@ -31,6 +32,7 @@ import { TestformComponent } from './testform/testform.component';
     UserpageComponent,
     TypcecheckComponent,
     TestformComponent,
+    RxjsLearnComponent,
   ],
   imports: [
     BrowserModule,
