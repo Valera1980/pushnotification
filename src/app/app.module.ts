@@ -1,3 +1,4 @@
+import {TooltipModule} from 'primeng';
 import {FormsModule} from '@angular/forms/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,8 @@ import { TypcecheckComponent } from './typcecheck/typcecheck.component';
 import { TestformComponent } from './testform/testform.component';
 import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
 
+import {CalendarModule} from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -38,7 +41,10 @@ import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
     BrowserModule,
     CheckboxModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule,
+    BrowserAnimationsModule,
+    TooltipModule
   
   ],
   providers: [],
