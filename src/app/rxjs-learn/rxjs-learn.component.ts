@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { of, combineLatest, ReplaySubject, BehaviorSubject, partition } from 'rxjs';
 import { take, delay, withLatestFrom, filter, distinct, groupBy, mergeMap, toArray } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 enum Colors {
   RED = 1,
@@ -16,10 +17,17 @@ type enumKeys = keyof Colors;
   styleUrls: ['./rxjs-learn.component.scss']
 })
 export class RxjsLearnComponent implements OnInit {
-
-  constructor() { }
+  aaa = '380';
+  ipaddr='33';
+  fff: FormGroup;
+  constructor(
+    private _fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.fff = this._fb.group({
+      uuu:'0000'
+    })
     this.getSome(1);
   }
 

@@ -1,5 +1,7 @@
+import {CheckboxModule} from 'primeng/checkbox';
+import {NgxMaskModule} from 'ngx-mask';
 import {TooltipModule} from 'primeng';
-import {FormsModule} from '@angular/forms/forms';
+import {FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,16 +12,18 @@ import { NotifyComponent } from './notify/notify.component';
 import { NewsComponent } from './news/news.component';
 import { GoogleComponent } from './google/google.component';
 import { LifeCilesComponent } from './life-ciles/life-ciles.component';
-import {CheckboxModule} from 'primeng/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserpageComponent } from './userpage/userpage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypcecheckComponent } from './typcecheck/typcecheck.component';
 import { TestformComponent } from './testform/testform.component';
 import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
+import {InputMaskModule} from 'primeng/inputmask';
+
 
 import {CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -44,7 +48,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     CalendarModule,
     BrowserAnimationsModule,
-    TooltipModule
+    TooltipModule,
+    NgxMaskModule.forRoot(),
+    CheckboxModule,
+    FormsModule,
+    InputMaskModule
   
   ],
   providers: [],
